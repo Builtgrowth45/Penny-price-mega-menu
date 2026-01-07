@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Penny Price Aromatherapy - Mega Menu Preview</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #f5f5f5;
+    }
+
+    /* Header */
+    .header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .announcement-bar {
+      background: #00393b;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    .header-main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: #00393b;
+      text-decoration: none;
+    }
+
+    /* Navigation */
+    .nav {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 0;
+      display: block;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: #00393b;
+    }
+
+    /* Mega Menu */
+    .mega-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      padding: 40px;
+      min-width: 800px;
+      max-width: 1200px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+
+    .nav-item:hover .mega-menu {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mega-menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .mega-menu-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mega-menu-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #00393b;
+      margin-bottom: 8px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .mega-menu-link {
+      text-decoration: none;
+      color: #666;
+      font-size: 14px;
+      padding: 6px 0;
+      display: block;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+
+    .mega-menu-link:hover {
+      color: #00393b;
+      padding-left: 8px;
+    }
+
+    /* Divider */
+    .mega-menu-divider {
+      height: 1px;
+      background: #e0e0e0;
+      margin: 12px 0;
+      opacity: 0.5;
+    }
+
+    .mega-menu-featured {
+      background: #f9f9f9;
+      padding: 16px;
+      border-radius: 6px;
+      margin-top: 8px;
+    }
+
+    .mega-menu-featured-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #999;
+      margin-bottom: 8px;
+    }
+
+    /* Actions */
+    .header-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .header-icon {
+      color: #333;
+      font-size: 20px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .header-icon:hover {
+      color: #00393b;
+    }
+
+    /* Demo Content */
+    .demo-content {
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 40px;
+      text-align: center;
+    }
+
+    .demo-title {
+      font-size: 32px;
+      color: #00393b;
+      margin-bottom: 16px;
+    }
+
+    .demo-subtitle {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    .demo-instructions {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .demo-instructions h3 {
+      color: #00393b;
+      margin-bottom: 16px;
+    }
+
+    .demo-instructions ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .demo-instructions li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+
+    .demo-instructions li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #00393b;
+      font-weight: bold;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #00393b;
+      color: white;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    Spend over £50.00 <strong>FOR FREE SHIPPING</strong>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-main">
+      <!-- Logo -->
+      <a href="#" class="logo">Penny Price Aromatherapy</a>
+
+      <!-- Navigation -->
+      <nav>
+        <ul class="nav">
+          <!-- Aromatherapy (Professional) -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">Aromatherapy (Professional)</a>
+            <div class="mega-menu">
+              <div class="mega-menu-grid">
+                <!-- Column 1: Essential Oils -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Essential Oils</a>
+                  <a href="#" class="mega-menu-link">Single Essential Oils</a>
+                  <a href="#" class="mega-menu-link">Essential Oil Blends</a>
+                  <a href="#" class="mega-menu-link">Organic Essential Oils</a>
+                  <a href="#" class="mega-menu-link">Rare & Precious Oils</a>
+                  <div class="mega-menu-divider"></div>
+                  <a href="#" class="mega-menu-link">Carrier & Base Oils</a>
+                  <a href="#" class="mega-menu-link">Professional Kits</a>
+                </div>
+
+                <!-- Column 2: Shop by Application -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Shop by Application</a>
+                  <a href="#" class="mega-menu-link">Respiratory Support</a>
+                  <a href="#" class="mega-menu-link">Muscle & Joint Comfort</a>
+                  <a href="#" class="mega-menu-link">Skin Recovery</a>
+                  <a href="#" class="mega-menu-link">Immune Support</a>
+                  <div class="mega-menu-divider"></div>
+                  <a href="#" class="mega-menu-link">Clinical Aromatherapy</a>
+                  <a href="#" class="mega-menu-link">Therapeutic Blends</a>
+                </div>
+
+                <!-- Column 3: Featured -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Resources</a>
+                  <a href="#" class="mega-menu-link">Professional Training</a>
+                  <a href="#" class="mega-menu-link">Research & Studies</a>
+                  <a href="#" class="mega-menu-link">Safety Guidelines</a>
+                  <div class="mega-menu-divider"></div>
+                  <div class="mega-menu-featured">
+                    <div class="mega-menu-featured-title">Featured Collection</div>
+                    <a href="#" class="mega-menu-title" style="font-size: 14px;">Professional Starter Kit</a>
+                    <p style="font-size: 13px; color: #999; margin-top: 8px;">Everything you need to begin your aromatherapy practice</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Health & Well-being (Retail) -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">Health & Well-being (Retail)</a>
+            <div class="mega-menu">
+              <div class="mega-menu-grid">
+                <!-- Column 1: Shop by Solution -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Shop by Solution</a>
+                  <a href="#" class="mega-menu-link">Relaxation & Sleep</a>
+                  <a href="#" class="mega-menu-link">Energy & Focus</a>
+                  <a href="#" class="mega-menu-link">Stress Relief</a>
+                  <a href="#" class="mega-menu-link">Family & Baby Care</a>
+                  <div class="mega-menu-divider"></div>
+                  <a href="#" class="mega-menu-link">Seasonal Wellness</a>
+                  <a href="#" class="mega-menu-link">Women's Health</a>
+                </div>
+
+                <!-- Column 2: Products -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Products</a>
+                  <a href="#" class="mega-menu-link">Diffusers & Accessories</a>
+                  <a href="#" class="mega-menu-link">Skincare</a>
+                  <a href="#" class="mega-menu-link">Massage Oils</a>
+                  <a href="#" class="mega-menu-link">Bath & Body</a>
+                  <div class="mega-menu-divider"></div>
+                  <a href="#" class="mega-menu-link">Gift Sets</a>
+                  <a href="#" class="mega-menu-link">Bestsellers</a>
+                </div>
+
+                <!-- Column 3: Featured -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Popular Collections</a>
+                  <a href="#" class="mega-menu-link">Sleep Better Range</a>
+                  <a href="#" class="mega-menu-link">De-Stress Collection</a>
+                  <a href="#" class="mega-menu-link">Natural Immunity</a>
+                  <div class="mega-menu-divider"></div>
+                  <div class="mega-menu-featured">
+                    <div class="mega-menu-featured-title">New Arrivals</div>
+                    <a href="#" class="mega-menu-title" style="font-size: 14px;">Mindfulness & Calm</a>
+                    <p style="font-size: 13px; color: #999; margin-top: 8px;">Discover our latest wellness collection</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- The Academy -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">The Academy</a>
+            <div class="mega-menu" style="min-width: 600px;">
+              <div class="mega-menu-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <!-- Column 1 -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Courses & Training</a>
+                  <a href="#" class="mega-menu-link">Foundation Course</a>
+                  <a href="#" class="mega-menu-link">Advanced Aromatherapy</a>
+                  <a href="#" class="mega-menu-link">Clinical Practice</a>
+                  <a href="#" class="mega-menu-link">Online Workshops</a>
+                  <div class="mega-menu-divider"></div>
+                  <a href="#" class="mega-menu-link">View All Courses</a>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Resources</a>
+                  <a href="#" class="mega-menu-link">Student Portal</a>
+                  <a href="#" class="mega-menu-link">Certification Info</a>
+                  <a href="#" class="mega-menu-link">Course Calendar</a>
+                  <a href="#" class="mega-menu-link">FAQs</a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- About PPA -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">About PPA</a>
+            <div class="mega-menu" style="min-width: 600px;">
+              <div class="mega-menu-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <!-- Column 1 -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Our Story</a>
+                  <a href="#" class="mega-menu-link">Heritage & Values</a>
+                  <a href="#" class="mega-menu-link">Quality & Sourcing</a>
+                  <a href="#" class="mega-menu-link">Certifications</a>
+                  <a href="#" class="mega-menu-link">Sustainability</a>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="mega-menu-column">
+                  <a href="#" class="mega-menu-title">Support</a>
+                  <a href="#" class="mega-menu-link">Contact Us</a>
+                  <a href="#" class="mega-menu-link">Shipping & Returns</a>
+                  <a href="#" class="mega-menu-link">FAQs</a>
+                  <a href="#" class="mega-menu-link">Wholesale Enquiries</a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <span class="header-icon">🔍</span>
+        <span class="header-icon">👤</span>
+        <span class="header-icon">🛒</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Demo Content -->
+  <div class="demo-content">
+    <h1 class="demo-title">Mega Menu Preview <span class="badge">Interactive Demo</span></h1>
+    <p class="demo-subtitle">Hover over the navigation items above to see the Tisserand-style mega menu in action</p>
+
+    <div class="demo-instructions">
+      <h3>✨ Features Demonstrated:</h3>
+      <ul>
+        <li><strong>Multi-Column Layout:</strong> 2-3 columns per dropdown</li>
+        <li><strong>Dividers:</strong> Visual separators between menu sections</li>
+        <li><strong>Featured Content:</strong> Highlighted collections with descriptions</li>
+        <li><strong>Two-Funnel Strategy:</strong> Professional vs. Retail navigation</li>
+        <li><strong>Hover Effects:</strong> Smooth transitions and animations</li>
+        <li><strong>Responsive Design:</strong> Clean, modern aesthetics</li>
+      </ul>
+
+      <h3 style="margin-top: 30px;">🎯 Menu Structure:</h3>
+      <ul>
+        <li><strong>Aromatherapy (Professional):</strong> Essential oils, clinical applications, professional resources</li>
+        <li><strong>Health & Well-being (Retail):</strong> Solution-based shopping, wellness products, gift sets</li>
+        <li><strong>The Academy:</strong> Courses, training, certifications</li>
+        <li><strong>About PPA:</strong> Company info, support, sustainability</li>
+      </ul>
+
+      <h3 style="margin-top: 30px;">💡 Implementation Notes:</h3>
+      <ul>
+        <li>Dividers created with CSS (1px border, 50% opacity)</li>
+        <li>Featured sections have light gray background</li>
+        <li>Links have hover effects (color change + indent)</li>
+        <li>Mega menu appears on hover with smooth fade-in</li>
+        <li>Grid layout adapts to content (2-3 columns)</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Add smooth scroll behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+      });
+    });
+
+    // Log hover events for demo purposes
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        console.log('Mega menu opened:', this.querySelector('.nav-link').textContent);
+      });
+    });
+  </script>
+</body>
+</html>
