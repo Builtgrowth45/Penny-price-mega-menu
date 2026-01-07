@@ -544,8 +544,292 @@
     }
 
     .hero-cta:hover {
-      transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* ==================== RESPONSIVE DESIGN ==================== */
+    
+    /* Mobile Hamburger Menu */
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .hamburger {
+      width: 28px;
+      height: 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: #2d5f5d;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-toggle.active .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .mobile-menu-toggle.active .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .mobile-menu-toggle.active .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    /* Mobile Menu Drawer */
+    .mobile-menu-drawer {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 85%;
+      max-width: 400px;
+      height: 100vh;
+      background: white;
+      z-index: 1002;
+      transition: right 0.3s ease;
+      overflow-y: auto;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+    }
+
+    .mobile-menu-drawer.active {
+      right: 0;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 1001;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-header {
+      padding: 20px;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #666;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .mobile-nav-item {
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: #2d5f5d;
+      font-weight: 600;
+      font-size: 16px;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 56px;
+    }
+
+    .mobile-nav-arrow {
+      transition: transform 0.3s ease;
+      font-size: 20px;
+    }
+
+    .mobile-nav-item.active .mobile-nav-arrow {
+      transform: rotate(180deg);
+    }
+
+    .mobile-submenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: #f9f9f9;
+    }
+
+    .mobile-nav-item.active .mobile-submenu {
+      max-height: 1000px;
+    }
+
+    .mobile-submenu-section {
+      padding: 16px 20px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .mobile-submenu-section:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-submenu-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #2d5f5d;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .mobile-submenu-link {
+      display: block;
+      padding: 10px 0 10px 12px;
+      text-decoration: none;
+      color: #666;
+      font-size: 14px;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-submenu-link:active {
+      background: #e0e0e0;
+    }
+
+    /* Tablet and Mobile Responsive Styles */
+    @media (max-width: 1024px) {
+      /* Show mobile menu toggle */
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      /* Hide desktop navigation */
+      .nav-wrapper {
+        display: none;
+      }
+
+      /* Adjust header for tablet */
+      .header-top-inner {
+        padding: 16px 30px;
+        gap: 20px;
+      }
+
+      .logo {
+        height: 50px;
+      }
+
+      /* Stack hero content */
+      .hero {
+        height: auto;
+        min-height: 400px;
+        padding: 60px 20px;
+      }
+
+      .hero-title {
+        font-size: 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      /* Mobile header adjustments */
+      .header-top-inner {
+        padding: 12px 20px;
+        grid-template-columns: 1fr auto 1fr;
+      }
+
+      .header-left {
+        gap: 12px;
+      }
+
+      .header-right {
+        gap: 12px;
+      }
+
+      .header-action span:not(.header-icon) {
+        display: none;
+      }
+
+      .logo {
+        height: 40px;
+      }
+
+      /* Mobile announcement bar */
+      .announcement-bar {
+        font-size: 11px;
+        padding: 10px;
+      }
+
+      /* Hero mobile */
+      .hero {
+        min-height: 350px;
+        padding: 40px 20px;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .hero-subtitle {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+
+      .hero-cta {
+        padding: 14px 28px;
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Extra small mobile */
+      .logo {
+        height: 35px;
+      }
+
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-subtitle {
+        font-size: 13px;
+      }
+
+      .mobile-menu-drawer {
+        width: 90%;
+      }
     }
   </style>
 </head>
@@ -591,6 +875,14 @@
           </svg>
           <span>Basket</span>
         </a>
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
       </div>
     </div>
   </div>
@@ -815,7 +1107,136 @@
       <p class="hero-subtitle">Expertly sourced, family-run, and trusted by professionals since 2003. Expertise dating back to 1983.</p>
       <a href="#" class="hero-cta">Shop Pure Essential Oils</a>
     </div>
+    </div>
   </section>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="mobile-menu-drawer" id="mobileMenuDrawer">
+    <div class="mobile-menu-header">
+      <img src="C:/Users/mcvea/.gemini/antigravity/brain/624008bb-6e22-490f-8c92-fda2bafb139b/uploaded_image_2_1767786834022.png" alt="Penny Price Aromatherapy" style="height: 35px;">
+      <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">×</button>
+    </div>
+
+    <ul class="mobile-nav-list">
+      <!-- Aromatherapy -->
+      <li class="mobile-nav-item">
+        <a href="#" class="mobile-nav-link">
+          Aromatherapy
+          <span class="mobile-nav-arrow">▼</span>
+        </a>
+        <div class="mobile-submenu">
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Essential Oils</div>
+            <a href="#" class="mobile-submenu-link">Single Essential Oils</a>
+            <a href="#" class="mobile-submenu-link">Essential Oil Blends</a>
+            <a href="#" class="mobile-submenu-link">Organic Essential Oils</a>
+            <a href="#" class="mobile-submenu-link">Rare & Precious Oils</a>
+            <a href="#" class="mobile-submenu-link">Carrier & Base Oils</a>
+            <a href="#" class="mobile-submenu-link">Professional Kits</a>
+          </div>
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Shop by Application</div>
+            <a href="#" class="mobile-submenu-link">Respiratory Support</a>
+            <a href="#" class="mobile-submenu-link">Muscle & Joint Comfort</a>
+            <a href="#" class="mobile-submenu-link">Skin Recovery</a>
+            <a href="#" class="mobile-submenu-link">Immune Support</a>
+            <a href="#" class="mobile-submenu-link">Clinical Aromatherapy</a>
+            <a href="#" class="mobile-submenu-link">Therapeutic Blends</a>
+          </div>
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Therapist Discount</div>
+            <a href="#" class="mobile-submenu-link">Get Verified</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Health & Wellbeing -->
+      <li class="mobile-nav-item">
+        <a href="#" class="mobile-nav-link">
+          Health & Wellbeing
+          <span class="mobile-nav-arrow">▼</span>
+        </a>
+        <div class="mobile-submenu">
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Shop by Solution</div>
+            <a href="#" class="mobile-submenu-link">Relaxation & Sleep</a>
+            <a href="#" class="mobile-submenu-link">Energy & Focus</a>
+            <a href="#" class="mobile-submenu-link">Stress Relief</a>
+            <a href="#" class="mobile-submenu-link">Family & Baby Care</a>
+            <a href="#" class="mobile-submenu-link">Seasonal Wellness</a>
+          </div>
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Products</div>
+            <a href="#" class="mobile-submenu-link">Diffusers & Accessories</a>
+            <a href="#" class="mobile-submenu-link">Massage Oils</a>
+            <a href="#" class="mobile-submenu-link">Bath & Body</a>
+            <a href="#" class="mobile-submenu-link">Skincare</a>
+            <a href="#" class="mobile-submenu-link">Gift Sets</a>
+          </div>
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Featured Collections</div>
+            <a href="#" class="mobile-submenu-link">AWARD WINNING Nurture Range</a>
+            <a href="#" class="mobile-submenu-link">Hair & Bodycare</a>
+            <a href="#" class="mobile-submenu-link">Essential Oil Diffusers</a>
+            <a href="#" class="mobile-submenu-link">Essential Oil Roll-Ons</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Aromatherapy Courses -->
+      <li class="mobile-nav-item">
+        <a href="#" class="mobile-nav-link">
+          Aromatherapy Courses
+          <span class="mobile-nav-arrow">▼</span>
+        </a>
+        <div class="mobile-submenu">
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Foundation Courses</div>
+            <a href="#" class="mobile-submenu-link">Introduction to Aromatherapy</a>
+            <a href="#" class="mobile-submenu-link">Essential Oils Basics</a>
+            <a href="#" class="mobile-submenu-link">Blending Techniques</a>
+            <a href="#" class="mobile-submenu-link">Safety & Dilution</a>
+          </div>
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Advanced Training</div>
+            <a href="#" class="mobile-submenu-link">Clinical Aromatherapy</a>
+            <a href="#" class="mobile-submenu-link">Therapeutic Applications</a>
+            <a href="#" class="mobile-submenu-link">Professional Practice</a>
+            <a href="#" class="mobile-submenu-link">Business Skills</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- About Us -->
+      <li class="mobile-nav-item">
+        <a href="#" class="mobile-nav-link">
+          About Us
+          <span class="mobile-nav-arrow">▼</span>
+        </a>
+        <div class="mobile-submenu">
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Our Story</div>
+            <a href="#" class="mobile-submenu-link">Heritage & Values</a>
+            <a href="#" class="mobile-submenu-link">Quality & Sourcing</a>
+            <a href="#" class="mobile-submenu-link">Certifications</a>
+            <a href="#" class="mobile-submenu-link">Sustainability</a>
+            <a href="#" class="mobile-submenu-link">Meet the Team</a>
+          </div>
+          <div class="mobile-submenu-section">
+            <div class="mobile-submenu-title">Customer Support</div>
+            <a href="#" class="mobile-submenu-link">Contact Us</a>
+            <a href="#" class="mobile-submenu-link">Shipping & Returns</a>
+            <a href="#" class="mobile-submenu-link">FAQs</a>
+            <a href="#" class="mobile-submenu-link">Track Order</a>
+            <a href="#" class="mobile-submenu-link">Returns Policy</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 
   <script>
     // Prevent default link behavior
@@ -823,6 +1244,59 @@
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
       });
+    });
+
+    // Mobile Menu Functionality
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+      mobileMenuToggle.classList.toggle('active');
+      mobileMenuDrawer.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenuDrawer.classList.contains('active') ? 'hidden' : '';
+    }
+
+    // Close mobile menu
+    function closeMobileMenu() {
+      mobileMenuToggle.classList.remove('active');
+      mobileMenuDrawer.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Event listeners
+    mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+    // Accordion functionality for mobile nav items
+    mobileNavItems.forEach(item => {
+      const link = item.querySelector('.mobile-nav-link');
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Close other open items
+        mobileNavItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+          }
+        });
+        
+        // Toggle current item
+        item.classList.toggle('active');
+      });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && mobileMenuDrawer.classList.contains('active')) {
+        closeMobileMenu();
+      }
     });
   </script>
 </body>
