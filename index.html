@@ -767,19 +767,48 @@
       /* Mobile header adjustments */
       .header-top-inner {
         padding: 12px 20px;
-        grid-template-columns: 1fr auto 1fr;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
       .header-left {
         gap: 12px;
+        flex: 0 0 auto;
+      }
+
+      .logo-container {
+        flex: 1 1 auto;
       }
 
       .header-right {
-        gap: 12px;
+        gap: 8px;
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
       }
 
+      /* Hide text labels on mobile, show icons only */
       .header-action span:not(.header-icon) {
         display: none;
+      }
+
+      /* Ensure hamburger is visible */
+      .mobile-menu-toggle {
+        display: block !important;
+        order: 10;
+        margin-left: 8px;
+      }
+
+      /* Ensure search icon is visible */
+      .search-icon {
+        width: 22px;
+        height: 22px;
+      }
+
+      .header-icon {
+        width: 22px;
+        height: 22px;
       }
 
       .logo {
@@ -814,7 +843,7 @@
     }
 
     @media (max-width: 480px) {
-      /* Extra small mobile */
+      /* Extra small mobile - iPhone SE, small Android */
       .logo {
         height: 35px;
       }
@@ -829,6 +858,27 @@
 
       .mobile-menu-drawer {
         width: 90%;
+      }
+
+      /* Force hamburger visibility on smallest screens */
+      .mobile-menu-toggle {
+        display: block !important;
+        position: relative;
+        z-index: 100;
+      }
+
+      /* Compact header for small screens */
+      .header-top-inner {
+        padding: 10px 15px;
+      }
+
+      .header-action {
+        padding: 8px;
+      }
+
+      /* Hide currency on very small screens */
+      .header-action:first-of-type {
+        display: none;
       }
     }
   </style>
