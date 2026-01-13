@@ -1,35 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Penny Price Aromatherapy - Client Preview</title>
+  <title>Penny Price Aromatherapy - Compliant Mega Menu</title>
+  <!-- Preconnect to Google Fonts for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Import Montserrat, Lato, and Libre Baskerville fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Libre+Baskerville:wght@400;700&display=swap"
+    rel="stylesheet">
+
   <style>
+    /* Global Reset to ensure consistent styling across browsers */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+    /* Body Styling */
     body {
       font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       background: #f5f5f5;
+      /* Light grey background for the page */
     }
 
-    /* Announcement Bar */
+    /* 
+    ========================================
+    ACCESSIBLE COLOR PALETTE (WCAG AA)
+    ========================================
+    Original Brand Teal: #67C0B7 (Fails) -> New Compliant Teal: #417C76
+    Original Brand Pink: #EB5D73 (Fails) -> New Compliant Pink: #BE4A5C
+    Original Brand Purple: #7784C0 (Fails) -> New Compliant Purple: #6570A3
+    Original Brand Yellow: #FFDF00 (Fails with white) -> Use with #000000 text only.
+    
+    Primary Dark Text used in this menu: #2D5F5D (A deep, accessible teal)
+    Secondary Dark Text: #333333 (Dark grey for body copy)
+    ========================================
+    */
+
+    /* Announcement Bar - Top of the page */
     .announcement-bar {
-      background: #2d5f5d;
+      background: #2D5F5D;
+      /* Compliant dark teal background */
       color: white;
+      /* White text - passes contrast on this background */
       text-align: center;
       padding: 12px;
       font-size: 13px;
       letter-spacing: 0.5px;
     }
 
-    /* Top Header Row */
+    /* Top Header Row - Contains logo, search, and user actions */
     .header-top {
       background: white;
       border-bottom: 1px solid #e0e0e0;
@@ -40,10 +64,12 @@
       padding: 16px 60px;
       display: grid;
       grid-template-columns: 1fr auto 1fr;
+      /* Left, Center (Logo), Right layout */
       align-items: center;
       gap: 40px;
     }
 
+    /* Left side of header (Search) */
     .header-left {
       display: flex;
       align-items: center;
@@ -61,7 +87,7 @@
       opacity: 0.7;
     }
 
-    /* Centered Logo */
+    /* Centered Logo Container */
     .logo-container {
       text-align: center;
     }
@@ -71,6 +97,7 @@
       width: auto;
     }
 
+    /* Right side of header (Currency, Account, Basket) */
     .header-right {
       display: flex;
       align-items: center;
@@ -83,7 +110,8 @@
       align-items: center;
       gap: 6px;
       font-size: 13px;
-      color: #333;
+      color: #333333;
+      /* Compliant dark grey text */
       text-decoration: none;
       cursor: pointer;
       transition: color 0.2s;
@@ -92,7 +120,8 @@
     }
 
     .header-action:hover {
-      color: #2d5f5d;
+      color: #2D5F5D;
+      /* Compliant dark teal on hover */
     }
 
     .header-icon {
@@ -100,10 +129,15 @@
       height: 20px;
     }
 
-    /* Navigation Row */
+    /* 
+    ========================================
+    MAIN NAVIGATION STYLING
+    ========================================
+    */
+    /* Navigation Bar Wrapper - Sticky on scroll */
     .nav-wrapper {
       background: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -114,6 +148,7 @@
       padding: 0 60px;
     }
 
+    /* Main Navigation List */
     .nav {
       display: flex;
       justify-content: center;
@@ -125,9 +160,11 @@
       position: relative;
     }
 
+    /* Top-level Navigation Links */
     .nav-link {
       text-decoration: none;
-      color: #2d5f5d;
+      color: #2D5F5D;
+      /* Compliant dark teal text */
       font-size: 13px;
       font-weight: 600;
       padding: 20px 0;
@@ -139,37 +176,47 @@
 
     .nav-link:hover {
       color: #1a3938;
+      /* A slightly darker teal on hover */
     }
 
-    /* Mega Menu - FULL WIDTH */
+    /* 
+    ========================================
+    MEGA MENU DROPDOWN STYLING
+    ========================================
+    */
+    /* Full Width Mega Menu Container */
     .mega-menu {
       position: fixed;
       top: 185px;
+      /* Adjust based on header height */
       left: 0;
       right: 0;
       background: white;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
       padding: 60px 80px;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                  visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      /* Hidden by default */
+      transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       max-height: calc(100vh - 185px);
       overflow-y: auto;
       z-index: 999;
     }
 
+    /* Show Mega Menu on Hover */
     .nav-item:hover .mega-menu,
     .mega-menu:hover {
       opacity: 1;
       visibility: visible;
     }
 
-    /* Keep nav link visible when hovering mega menu */
+    /* Keep the main nav link highlighted when mega menu is active */
     .nav-item:hover .nav-link {
       color: #1a3938;
     }
 
+    /* Grid layout for mega menu content */
     .mega-menu-grid {
       max-width: 1400px;
       margin: 0 auto;
@@ -178,226 +225,19 @@
       gap: 60px;
     }
 
-    .mega-menu-grid.multi-column {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    /* Aromatherapy special layout */
-    .mega-menu-grid.aromatherapy {
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-    }
-
-    .aromatherapy-links {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 60px;
-    }
-
-    .aromatherapy-featured img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 20px;
-    }
-
-    .aromatherapy-featured-title {
-      font-size: 24px;
-      font-weight: 700;
-      color: #2d5f5d;
-      margin-bottom: 12px;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .aromatherapy-featured-desc {
-      font-size: 15px;
-      color: #666;
-      line-height: 1.7;
-    }
-
-    /* Aromatherapy Right Side - Collection + CTA */
-    .aromatherapy-right {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 30px;
-    }
-
-    .aromatherapy-collection {
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid #e8f0f0;
-    }
-
-    .aromatherapy-collection img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
-
-    .aromatherapy-collection-content {
-      padding: 20px;
-    }
-
-    .aromatherapy-collection-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #2d5f5d;
-      margin-bottom: 10px;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .aromatherapy-collection-desc {
-      font-size: 14px;
-      color: #666;
-      line-height: 1.6;
-    }
-
-    /* Therapist CTA Banner */
-    .therapist-cta {
-      background: linear-gradient(135deg, #2d5f5d 0%, #1a3938 100%);
-      border-radius: 12px;
-      padding: 40px 30px;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .therapist-cta-title {
-      font-size: 24px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .therapist-cta-subtitle {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .therapist-cta-desc {
-      font-size: 14px;
-      margin-bottom: 25px;
-      opacity: 0.9;
-      line-height: 1.5;
-    }
-
-    .therapist-cta-button {
-      background: white;
-      color: #2d5f5d;
-      padding: 14px 32px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 15px;
-      display: inline-block;
-      transition: transform 0.2s, box-shadow 0.2s;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .therapist-cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-    }
-
-    /* Course Images Grid */
-    .course-images-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .course-image-card {
-      aspect-ratio: 1;
-      background: #f5f9f9;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      border: 1px solid #e8f0f0;
-      padding: 30px;
-      text-align: center;
-    }
-
-    .course-image-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(45,95,93,0.15);
-    }
-
-    .course-image-title {
-      font-size: 16px;
-      font-weight: 700;
-      color: #2d5f5d;
-      font-family: 'Montserrat', sans-serif;
-    }
-
-    .mega-menu-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 60px;
-    }
-
-    /* Health & Wellbeing special layout */
-    .mega-menu-grid.health-wellbeing {
-      grid-template-columns: 2fr 3fr;
-      gap: 80px;
-    }
-
-    .health-collections {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .collection-square {
-      aspect-ratio: 1;
-      background: #f5f9f9;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      border: 1px solid #e8f0f0;
-    }
-
-    .collection-square:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 20px rgba(45,95,93,0.15);
-    }
-
-    .collection-square-content {
-      text-align: center;
-      padding: 20px;
-    }
-
-    .collection-square-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #2d5f5d;
-      font-family: 'Montserrat', sans-serif;
-    }
-
+    /* Column within the mega menu */
     .mega-menu-column {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
+    /* Column Headers */
     .mega-menu-title {
       font-size: 13px;
       font-weight: 700;
-      color: #2d5f5d;
+      color: #2D5F5D;
+      /* Compliant dark teal text */
       margin-bottom: 16px;
       text-decoration: none;
       display: block;
@@ -406,9 +246,11 @@
       font-family: 'Montserrat', sans-serif;
     }
 
+    /* Individual Links within a column */
     .mega-menu-link {
       text-decoration: none;
-      color: #666;
+      color: #666666;
+      /* Compliant dark grey text */
       font-size: 13px;
       padding: 8px 0;
       display: block;
@@ -416,31 +258,37 @@
       position: relative;
     }
 
+    /* Hover effect for links */
     .mega-menu-link:hover {
-      color: #2d5f5d;
+      color: #2D5F5D;
+      /* Compliant dark teal on hover */
       padding-left: 12px;
     }
 
+    /* Add a small arrow on hover */
     .mega-menu-link:hover::before {
       content: '→';
       position: absolute;
       left: 0;
-      color: #2d5f5d;
+      color: #2D5F5D;
+      /* Compliant dark teal arrow */
       animation: slideIn 0.3s ease;
     }
 
+    /* Animation for the hover arrow */
     @keyframes slideIn {
       from {
         opacity: 0;
         transform: translateX(-5px);
       }
+
       to {
         opacity: 1;
         transform: translateX(0);
       }
     }
 
-    /* Divider */
+    /* Subtle divider line */
     .mega-menu-divider {
       height: 1px;
       background: linear-gradient(to right, transparent, #e0e0e0, transparent);
@@ -448,48 +296,65 @@
       opacity: 0.6;
     }
 
-    .mega-menu-featured {
-      background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
-      padding: 20px;
+    /* 
+    ========================================
+    FEATURED COLLECTION CARDS
+    ========================================
+    */
+    /* Grid for the four collection cards */
+    .health-collections {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    /* Individual Card Styling */
+    .collection-square {
+      aspect-ratio: 1;
+      /* Makes them perfect squares */
       border-radius: 8px;
-      margin-top: 12px;
-      border: 1px solid #f0f0f0;
+      overflow: hidden;
       transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
 
-    .mega-menu-featured:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    .collection-square:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(45, 95, 93, 0.15);
     }
 
-    .mega-menu-featured-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: #999;
-      margin-bottom: 8px;
-      font-family: 'Montserrat', sans-serif;
+    .collection-square-content {
+      text-align: center;
+      padding: 20px;
     }
 
-    .mega-menu-featured-product {
-      font-size: 14px;
-      font-weight: 600;
-      color: #2d5f5d;
-      margin-bottom: 6px;
-      font-family: 'Montserrat', sans-serif;
+    /* Card Titles - Using compliant dark teal */
+    .collection-square-title {
+      font-size: 18px;
+      /* Increased size for better readability */
+      font-weight: 700;
+      color: #2D5F5D;
+      /* Compliant dark teal text */
+      font-family: 'Libre Baskerville', serif;
+      /* Using brand serif font */
+      line-height: 1.3;
     }
 
-    .mega-menu-featured-desc {
-      font-size: 12px;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    /* Hero Section */
+    /* 
+    ========================================
+    HERO SECTION
+    ========================================
+    */
     .hero {
       position: relative;
       height: 600px;
-      background: linear-gradient(135deg, #2d5f5d 0%, #1a3938 100%);
+      /* Background gradient using compliant dark teal and an even darker shade */
+      background: linear-gradient(135deg, #2D5F5D 0%, #1a3938 100%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -504,6 +369,7 @@
       height: 100%;
       object-fit: cover;
       opacity: 0.3;
+      /* Low opacity so text on top is readable */
     }
 
     .hero-content {
@@ -511,6 +377,7 @@
       z-index: 2;
       text-align: center;
       color: white;
+      /* White text on dark background - passes contrast */
       max-width: 800px;
       padding: 0 40px;
     }
@@ -530,10 +397,12 @@
       line-height: 1.6;
     }
 
+    /* Hero Call-to-Action Button */
     .hero-cta {
       display: inline-block;
       background: white;
-      color: #2d5f5d;
+      color: #2D5F5D;
+      /* Compliant dark teal text on white button */
       padding: 16px 40px;
       border-radius: 4px;
       text-decoration: none;
@@ -545,11 +414,13 @@
 
     .hero-cta:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     }
   </style>
 </head>
+
 <body>
+
   <!-- Announcement Bar -->
   <div class="announcement-bar">
     Spend over £50.00 <strong>FOR FREE SHIPPING</strong>
@@ -566,9 +437,9 @@
         </svg>
       </div>
 
-      <!-- Center: Logo -->
+      <!-- Center: Logo (Replace with your actual logo path) -->
       <div class="logo-container">
-        <img src="C:/Users/mcvea/.gemini/antigravity/brain/624008bb-6e22-490f-8c92-fda2bafb139b/uploaded_image_2_1767786834022.png" alt="Penny Price Aromatherapy" class="logo">
+        <img src="path/to/your/logo.png" alt="Penny Price Aromatherapy" class="logo">
       </div>
 
       <!-- Right: Currency, Account, Basket -->
@@ -600,66 +471,21 @@
     <div class="nav-container">
       <nav>
         <ul class="nav">
-          <!-- Aromatherapy -->
+          <!-- Aromatherapy Link -->
           <li class="nav-item">
             <a href="#" class="nav-link">Aromatherapy</a>
-            <div class="mega-menu">
-              <div class="mega-menu-grid aromatherapy">
-                <!-- Left: Text Links -->
-                <div class="aromatherapy-links">
-                  <div class="mega-menu-column">
-                    <a href="#" class="mega-menu-title">Essential Oils</a>
-                    <a href="#" class="mega-menu-link">Single Essential Oils</a>
-                    <a href="#" class="mega-menu-link">Essential Oil Blends</a>
-                    <a href="#" class="mega-menu-link">Organic Essential Oils</a>
-                    <a href="#" class="mega-menu-link">Rare & Precious Oils</a>
-                    <div class="mega-menu-divider"></div>
-                    <a href="#" class="mega-menu-link">Carrier & Base Oils</a>
-                    <a href="#" class="mega-menu-link">Professional Kits</a>
-                  </div>
-
-                  <div class="mega-menu-column">
-                    <a href="#" class="mega-menu-title">Shop by Application</a>
-                    <a href="#" class="mega-menu-link">Respiratory Support</a>
-                    <a href="#" class="mega-menu-link">Muscle & Joint Comfort</a>
-                    <a href="#" class="mega-menu-link">Skin Recovery</a>
-                    <a href="#" class="mega-menu-link">Immune Support</a>
-                    <div class="mega-menu-divider"></div>
-                    <a href="#" class="mega-menu-link">Clinical Aromatherapy</a>
-                    <a href="#" class="mega-menu-link">Therapeutic Blends</a>
-                  </div>
-                </div>
-
-                <!-- Right: Collection + CTA -->
-                <div class="aromatherapy-right">
-                  <!-- Collection -->
-                  <div class="aromatherapy-collection">
-                    <img src="C:/Users/mcvea/.gemini/antigravity/brain/624008bb-6e22-490f-8c92-fda2bafb139b/uploaded_image_1_1767787788819.jpg" alt="Pure Essential Oils">
-                    <div class="aromatherapy-collection-content">
-                      <div class="aromatherapy-collection-title">Pure Essential Oils</div>
-                      <div class="aromatherapy-collection-desc">Discover our complete range of therapeutic-grade essential oils</div>
-                    </div>
-                  </div>
-
-                  <!-- Therapist CTA -->
-                  <div class="therapist-cta">
-                    <div class="therapist-cta-title">Therapist-Only Offers</div>
-                    <div class="therapist-cta-subtitle">Claim Your Therapist Discount</div>
-                    <div class="therapist-cta-desc">Verified professionals get exclusive pricing, early access & perks.</div>
-                    <a href="#" class="therapist-cta-button">Get Verified</a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </li>
 
-          <!-- Health & Wellbeing -->
+          <!-- Health & Wellbeing Link with Mega Menu -->
           <li class="nav-item">
             <a href="#" class="nav-link">Health & Wellbeing</a>
             <div class="mega-menu">
+              <!-- Grid Layout for Mega Menu Content -->
               <div class="mega-menu-grid" style="grid-template-columns: 1fr 2fr;">
-                <!-- Left: Text Columns -->
+
+                <!-- Left Side: Text Link Columns -->
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px;">
+                  <!-- Column 1: Shop by Solution -->
                   <div class="mega-menu-column">
                     <a href="#" class="mega-menu-title">Shop by Solution</a>
                     <a href="#" class="mega-menu-link">Relaxation & Sleep</a>
@@ -668,7 +494,7 @@
                     <a href="#" class="mega-menu-link">Family & Baby Care</a>
                     <a href="#" class="mega-menu-link">Seasonal Wellness</a>
                   </div>
-
+                  <!-- Column 2: Products -->
                   <div class="mega-menu-column">
                     <a href="#" class="mega-menu-title">Products</a>
                     <a href="#" class="mega-menu-link">Diffusers & Accessories</a>
@@ -679,128 +505,56 @@
                   </div>
                 </div>
 
-                <!-- Right: 4 Collection Images -->
+                <!-- Right Side: Featured Collection Cards -->
                 <div>
                   <div class="mega-menu-title">Featured Collections</div>
                   <div class="health-collections">
-                    <a href="#" class="collection-square" style="background: linear-gradient(135deg, #e8f5f3 0%, #d4ebe8 100%);">
+
+                    <!-- Card 1: Nurture Range (Light Teal Background) -->
+                    <a href="#" class="collection-square"
+                      style="background: linear-gradient(135deg, #e8f5f3 0%, #d4ebe8 100%);">
                       <div class="collection-square-content">
                         <div class="collection-square-title">AWARD WINNING<br>Nurture Range</div>
                       </div>
                     </a>
-                    <a href="#" class="collection-square" style="background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d4 100%);">
+
+                    <!-- Card 2: Hair & Bodycare (Light Beige Background) -->
+                    <a href="#" class="collection-square"
+                      style="background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d4 100%);">
                       <div class="collection-square-content">
                         <div class="collection-square-title">Hair & Bodycare</div>
                       </div>
                     </a>
-                    <a href="#" class="collection-square" style="background: linear-gradient(135deg, #e8f0f5 0%, #d4e4eb 100%);">
+
+                    <!-- Card 3: Essential Oil Diffusers (Light Blue Background) -->
+                    <a href="#" class="collection-square"
+                      style="background: linear-gradient(135deg, #e8f0f5 0%, #d4e4eb 100%);">
                       <div class="collection-square-content">
                         <div class="collection-square-title">Essential Oil Diffusers</div>
                       </div>
                     </a>
-                    <a href="#" class="collection-square" style="background: linear-gradient(135deg, #f0e8f5 0%, #e4d4eb 100%);">
+
+                    <!-- Card 4: Essential Oil Roll-Ons (Light Lilac Background) -->
+                    <a href="#" class="collection-square"
+                      style="background: linear-gradient(135deg, #f0e8f5 0%, #e4d4eb 100%);">
                       <div class="collection-square-content">
                         <div class="collection-square-title">Essential Oil Roll-Ons</div>
                       </div>
                     </a>
+
                   </div>
                 </div>
+
               </div>
             </div>
           </li>
 
-          <!-- Aromatherapy Courses -->
+          <!-- Other Nav Links -->
           <li class="nav-item">
             <a href="#" class="nav-link">Aromatherapy Courses</a>
-            <div class="mega-menu">
-              <div class="mega-menu-grid" style="grid-template-columns: 1fr 2fr;">
-                <!-- Left: Text Columns -->
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px;">
-                  <div class="mega-menu-column">
-                    <a href="#" class="mega-menu-title">Foundation Courses</a>
-                    <a href="#" class="mega-menu-link">Introduction to Aromatherapy</a>
-                    <a href="#" class="mega-menu-link">Essential Oils Basics</a>
-                    <a href="#" class="mega-menu-link">Blending Techniques</a>
-                    <a href="#" class="mega-menu-link">Safety & Dilution</a>
-                  </div>
-
-                  <div class="mega-menu-column">
-                    <a href="#" class="mega-menu-title">Advanced Training</a>
-                    <a href="#" class="mega-menu-link">Clinical Aromatherapy</a>
-                    <a href="#" class="mega-menu-link">Therapeutic Applications</a>
-                    <a href="#" class="mega-menu-link">Professional Practice</a>
-                    <a href="#" class="mega-menu-link">Business Skills</a>
-                  </div>
-                </div>
-
-                <!-- Right: 4 Course Images -->
-                <div>
-                  <div class="mega-menu-title">Explore Our Academy</div>
-                  <div class="course-images-grid">
-                    <a href="#" class="course-image-card" style="background: linear-gradient(135deg, #e8f5f3 0%, #d4ebe8 100%);">
-                      <div class="course-image-title">Our Academy</div>
-                    </a>
-                    <a href="#" class="course-image-card" style="background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d4 100%);">
-                      <div class="course-image-title">Our Courses</div>
-                    </a>
-                    <a href="#" class="course-image-card" style="background: linear-gradient(135deg, #e8f0f5 0%, #d4e4eb 100%);">
-                      <div class="course-image-title">Online Courses</div>
-                    </a>
-                    <a href="#" class="course-image-card" style="background: linear-gradient(135deg, #f0e8f5 0%, #e4d4eb 100%);">
-                      <div class="course-image-title">All Courses</div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </li>
-
-          <!-- About Us -->
           <li class="nav-item">
             <a href="#" class="nav-link">About Us</a>
-            <div class="mega-menu">
-              <div class="mega-menu-grid" style="grid-template-columns: 1fr 2fr;">
-                <!-- Left: Text Columns -->
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px;">
-                  <div class="mega-menu-column">
-                    <a href="#" class="mega-menu-title">Our Story</a>
-                    <a href="#" class="mega-menu-link">Heritage & Values</a>
-                    <a href="#" class="mega-menu-link">Quality & Sourcing</a>
-                    <a href="#" class="mega-menu-link">Certifications</a>
-                    <a href="#" class="mega-menu-link">Sustainability</a>
-                    <a href="#" class="mega-menu-link">Meet the Team</a>
-                  </div>
-
-                  <div class="mega-menu-column">
-                    <a href="#" class="mega-menu-title">Customer Support</a>
-                    <a href="#" class="mega-menu-link">Contact Us</a>
-                    <a href="#" class="mega-menu-link">Shipping & Returns</a>
-                    <a href="#" class="mega-menu-link">FAQs</a>
-                    <a href="#" class="mega-menu-link">Track Order</a>
-                    <a href="#" class="mega-menu-link">Returns Policy</a>
-                  </div>
-                </div>
-
-                <!-- Right: 4 Featured Images -->
-                <div>
-                  <div class="mega-menu-title">Explore More</div>
-                  <div class="course-images-grid">
-                    <a href="#" class="course-image-card" style="background: linear-gradient(135deg, #e8f5f3 0%, #d4ebe8 100%);">
-                      <div class="course-image-title">Our Story</div>
-                    </a>
-                    <a href="#" class="course-image-card" style="background: linear-gradient(135deg, #f5f0e8 0%, #ebe4d4 100%);">
-                      <div class="course-image-title">Blog</div>
-                    </a>
-                    <a href="#" class="course-image-card" style="background: linear-gradient(135deg, #e8f0f5 0%, #d4e4eb 100%);">
-                      <div class="course-image-title">Our Whitelabel Service</div>
-                    </a>
-                    <a href="#" class="course-image-card" style="background: linear-gradient(135deg, #f0e8f5 0%, #e4d4eb 100%);">
-                      <div class="course-image-title">Safety Information</div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </li>
         </ul>
       </nav>
@@ -809,21 +563,25 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <img src="C:/Users/mcvea/.gemini/antigravity/brain/624008bb-6e22-490f-8c92-fda2bafb139b/uploaded_image_2_1767790734542.png" alt="Aromatherapy Blending" class="hero-bg">
+    <!-- Replace with your actual hero image path -->
+    <img src="path/to/your/hero-image.jpg" alt="Aromatherapy Blending" class="hero-bg">
     <div class="hero-content">
       <h1 class="hero-title">Experience the Therapeutic Power of Pure Aromatherapy</h1>
-      <p class="hero-subtitle">Expertly sourced, family-run, and trusted by professionals since 2003. Expertise dating back to 1983.</p>
+      <p class="hero-subtitle">Expertly sourced, family-run, and trusted by professionals since 2003. Expertise dating
+        back to 1983.</p>
       <a href="#" class="hero-cta">Shop Pure Essential Oils</a>
     </div>
   </section>
 
   <script>
-    // Prevent default link behavior
+    // Prevent default jump behavior for demo links with href="#"
     document.querySelectorAll('a[href="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
       });
     });
   </script>
+
 </body>
+
 </html>
